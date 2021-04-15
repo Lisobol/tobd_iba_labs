@@ -8,9 +8,9 @@ from memory_profiler import profile
 
 
 def gen_str(file_size_gb, filename='/home/lisobole/work/lab1.txt'):
-    strs = []
     count_strs = 0
     while os.path.getsize(filename) / (1024 * 1024 * 1024) < file_size_gb:
+        strs = []
         print('Размер файла [Гб]:', os.path.getsize(filename) / (1024 * 1024 * 1024))
         for i in range(100000):
             count_strs += 1
