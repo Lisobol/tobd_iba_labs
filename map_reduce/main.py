@@ -7,21 +7,15 @@ import collections
 from memory_profiler import profile
 
 
+
 def gen_str(file_size_gb, filename='/home/lisobole/work/lab1.txt'):
-    count_strs = 0
     while os.path.getsize(filename) / (1024 * 1024 * 1024) < file_size_gb:
-        strs = []
         print('Размер файла [Гб]:', os.path.getsize(filename) / (1024 * 1024 * 1024))
-        for i in range(100000):
-            count_strs += 1
-            strs.append(''.join(random.choice(string.ascii_letters) for i in range(random.randint(32, 62))) + '\n')
-
-        str_to_write = ''.join(strs)
-
+        strs = ''.join(
+            [''.join(random.choice(string.ascii_letters) for i in range(random.randint(32, 62))) + '\n' for _ in
+             range(0, 10000)])
         with open(filename, 'a', encoding='utf-8') as file:
-            file.write(str_to_write)
-    print('Всего строк в файле', count_strs)
-    return count_strs
+            file.write(strs)
 
 
 def read_file(file_part):
